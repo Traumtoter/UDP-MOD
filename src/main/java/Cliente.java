@@ -21,6 +21,7 @@ public class Cliente {
         
         BufferedReader EntradaUser = new BufferedReader(new InputStreamReader(System.in));
         String NameServer ="localhost";
+        
         String Message;
         try
         {
