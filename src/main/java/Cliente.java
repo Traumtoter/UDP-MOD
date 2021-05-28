@@ -12,6 +12,7 @@ import java.net.*;
 
 import javax.sound.midi.Soundbank;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 import java.io.*;
 public class Cliente {
 
@@ -24,7 +25,9 @@ public class Cliente {
         
         //BufferedReader EntradaUser = new BufferedReader(new InputStreamReader(System.in));
         Scanner EntradaUser = new Scanner(System.in);
-        String NameServer ="192.168.1.18";
+        
+        String NameServer = JOptionPane.showInputDialog("Ingreesa la direccion Ip del servidor\n");
+        
         
         String Message;
         try
@@ -40,8 +43,8 @@ public class Cliente {
                 byte[]DatosEnviar = new byte[1024];
                 
 
-                System.out.println("Ingresa el mensage para el servidor");
-                Message = EntradaUser.nextLine();
+               
+                Message =  JOptionPane.showInputDialog("Ingreesa mensaje para el servidor\n");
                 
                 if(Message.equals(""))Message = "cierre";
                 
@@ -60,7 +63,7 @@ public class Cliente {
                 if(Respuesta.indexOf(cierre)<0)
                 {
                     
-                    System.out.println("Respuesta del servidor: "+Respuesta+ "\n");
+                    JOptionPane.showMessageDialog(null, "Respuesta del servidor: "+Respuesta);
                 }
                 else
                 {
