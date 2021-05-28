@@ -30,22 +30,31 @@ public class ServerUDP {
                 Coneccion.receive(PacketRecivido);
                 
                 String CadenaServer = new String(PacketRecivido.getData());
-                CadenaEnviar = CadenaServer.getBytes();
+                //CadenaEnviar = CadenaServer.getBytes();
                 
                InetAddress Ip = PacketRecivido.getAddress();
                int puerto = PacketRecivido.getPort();
-               
                System.out.println("Enviando a: " + PacketRecivido.getAddress());
                
-               DatagramPacket enviarpaqket = new DatagramPacket(CadenaEnviar,CadenaEnviar.length,
+               
+               String Senviada = new String(CadenaServer);
+               System.out.println("Mensaje recibido: "+CadenaServer);
+               
+               // Senviada += Senviada;
+               CadenaServer = CadenaServer.concat(Senviada);
+                CadenaEnviar = CadenaServer.getBytes();
+                
+                DatagramPacket enviarpaqket = new DatagramPacket(CadenaEnviar,CadenaEnviar.length,
                Ip,puerto);
-               String Senviada = new String(PacketRecivido.getData());
-               Coneccion.send(enviarpaqket);
+                Coneccion.send(enviarpaqket);  
+
+              // Coneccion.send(enviarpaqket);
+               
                
               
                if(CadenaServer.indexOf("cierre") <0 )
                {
-                   System.out.println("Enviando... "+Senviada);
+                   System.out.println("Enviando... " +new String(enviarpaqket.getData()));
                    
                 }
                else
@@ -57,7 +66,7 @@ public class ServerUDP {
                     break;
                }
                
-               System.out.println("Hola server Abajo");
+              // System.out.println("Hola server Abajo");
             }
         }
         catch(Exception e)
